@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
         multdes(5)
         listadoOrden()
         vehiculo()
+        cedula()
 
 
     }
@@ -72,19 +73,45 @@ class MainActivity : AppCompatActivity() {
             Delantera,
             Trasera
         }
-        fun vehiculo(){
+        fun vehi(){
             for(traction in traccion){
                 println("La tracción del vehiculo es: "+traction)
             }
         }
     }
-    private fun vehiculo(){
+    fun vehiculo(){
         val car = traccion(arrayOf(traccion.trac.Trasera),motor = "V16",tipo="Sport",
         capacidad="2 pasajeros")
-        car.vehiculo()
+        car.vehi()
         println("El motor es "+car.motor)
         println("El tipo del vehiculo es "+car.tipo)
         println("Tiene capacidad para  "+car.capacidad)
+    }
+    fun cedula(){
+        var c=0
+        var total =0
+        val cedula = arrayListOf<Int>(1,1,0,5,6,3,6,8,9,6)
+        val nFin = cedula.last()
+        for(x in cedula.indices){
+            c=cedula[x]
+            if(x%2==0){
+                c=(cedula[x]*2)
+                if (c>9){
+                    c = c-9
+                }
+                total = total+c
+            }else{
+                total = total+c
+            }
+        }
+        total = total - nFin
+        val pNumero = total.toString().substring(0,1)
+        val dece = (pNumero.toInt()+1)*10
+        if (dece-total==nFin||dece-total==10){
+            println("La cedula -/ $cedula -/ si es Correcta.")
+        }else{
+            println("La cedula -/ $cedula -/ no es Incorrecta.")
+        }
     }
 
 
